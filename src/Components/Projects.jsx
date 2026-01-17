@@ -1,8 +1,11 @@
 import React from "react";
 
+
 const Projects = () => {
     return (
-        <div>Put all my darn projects here and make em look pretty lol</div>
+        <div className="project-section">
+            <h2>Projects</h2>
+        </div>
     );
 };
 

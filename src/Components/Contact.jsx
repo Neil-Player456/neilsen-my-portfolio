@@ -1,8 +1,11 @@
 import React from "react";
 
+
 const Contact = () => {
     return (
-        <div>Let people know how to contact me</div>
+        <div className="Contact-section">
+            <h2>Contact Me</h2>
+        </div>
     );
 };
 
