@@ -5,26 +5,54 @@ html {
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  color: #333;
+  color: #fff;
+  background: #0b0f1a; 
 }
 
 main {
   width: 100%;
 }
 
-.header {
-  min-height: 90vh;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 6rem 2rem;
 
+.header {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+  color: #fff;
+}
+
+.header-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 30%, rgba(255, 100, 200, 0.1), transparent 60%),
+              radial-gradient(circle at 80% 70%, rgba(100, 200, 255, 0.1), transparent 60%);
+  z-index: 0;
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 800px;
 }
 
 .header-intro {
-  color: #666;
+  color: #aaa;
   font-size: 1rem;
 }
 
@@ -32,78 +60,101 @@ main {
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 700;
   margin: 0.5rem 0;
+  text-shadow: 0 0 15px rgba(255,255,255,0.3);
 }
 
 .header-title {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: #555;
+  margin: 0.5rem 0 1.5rem;
+  color: #ccc;
+  text-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
 
 .header-description {
-  max-width: 540px;
-  margin: 1.5rem 0 2rem;
   line-height: 1.6;
-  color: #666;
+  color: #ddd;
+  margin-bottom: 2rem;
 }
 
 .header-button {
-  width: fit-content;
   padding: 0.75rem 1.5rem;
-  border: 1px solid #333;
-  background: transparent;
-  color: #333;
+  border: 1px solid #fff;
+  color: #fff;
   text-decoration: none;
   font-weight: 500;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .header-button:hover {
-  background: #333;
-  color: #fff;
+  background: #fff;
+  color: #000;
 }
+
 
 .section-nav {
   position: sticky;
   top: 0;
+  background: #0b0f1a;
+  border-bottom: 1px solid #333;
   z-index: 100;
-
-  background: #fff;
-  border-bottom: 1px solid #eaeaea;
 }
 
 .section-nav ul {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-
   display: flex;
   justify-content: center;
   gap: 2rem;
-
   list-style: none;
+  margin: 0;
+  padding: 1rem 2rem;
 }
 
 .section-nav a {
   text-decoration: none;
-  color: #333;
+  color: #fff;
   font-weight: 500;
   padding-bottom: 4px;
 }
 
 .section-nav li.active a {
-  border-bottom: 2px solid #333;
+  border-bottom: 2px solid #fff;
 }
+
 
 section {
   padding: 100px 2rem;
   min-height: 100vh;
-}
-
-section > * {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease-out;
+  scroll-margin-top: 80px; 
 }
 
-section {
-  scroll-margin-top: 80px;
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
+
+
+.fade-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.starfield-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; 
+  pointer-events: none; 
+}
+

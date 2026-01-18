@@ -1,7 +1,5 @@
-import React from "react";
-
-
 import { useEffect, useState } from "react";
+
 
 const Nav = () => {
   const [activeSection, setActiveSection] = useState("about");
@@ -9,11 +7,9 @@ const Nav = () => {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["about", "projects", "contact"];
-
-      sections.forEach((id) => {
+      sections.forEach(id => {
         const section = document.getElementById(id);
         if (!section) return;
-
         const rect = section.getBoundingClientRect();
         if (rect.top <= 150 && rect.bottom >= 150) {
           setActiveSection(id);
@@ -23,7 +19,6 @@ const Nav = () => {
 
     window.addEventListener("scroll", handleScroll);
     handleScroll();
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
