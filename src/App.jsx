@@ -1,15 +1,17 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 
 import Starfield from "./components/Starfield";
+import Header from "./components/Header";
 import Nav from "./components/Nav";
 import About from "./components/About";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 
+
 const App = () => {
   useEffect(() => {
-    
+
     const sections = document.querySelectorAll(".fade-section");
 
     const observer = new IntersectionObserver(
@@ -30,9 +32,9 @@ const App = () => {
 
   return (
     <>
-      
-      <Starfield />
 
+      <Starfield />
+      <Header />
       <Nav />
 
       <main>
