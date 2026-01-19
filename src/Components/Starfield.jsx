@@ -27,8 +27,8 @@ const Starfield = () => {
         y: Math.random() * height,
         r: Math.random() * layer.size + 0.2,
         speed: layer.speed,
-        drift: (Math.random() - 0.5) * 0.15, // horizontal drift
-        phase: Math.random() * Math.PI * 2,   // twinkle
+        drift: (Math.random() - 0.5) * 0.15, 
+        phase: Math.random() * Math.PI * 2,   
       }))
     );
 

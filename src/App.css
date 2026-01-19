@@ -70,12 +70,6 @@ main {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-.header-description {
-  line-height: 1.6;
-  color: #ddd;
-  margin-bottom: 2rem;
-}
-
 .header-button {
   padding: 0.75rem 1.5rem;
   border: 1px solid #fff;
@@ -162,4 +156,113 @@ section {
   position: relative;
   z-index: 1;
 } 
+
+.about {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.about-eyebrow {
+  display: block;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #8a8f98;
+  margin-bottom: 1rem;
+}
+
+.about-heading {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.about p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #cfd3dc;
+  margin-bottom: 1.25rem;
+}
+
+.about-divider {
+  width: 60px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 2rem 0;
+}
+
+.about-meta {
+  font-size: 0.95rem;
+  color: #9aa0aa;
+}
+
+.about-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  font-size: 0.85rem;
+  font-weight: 700; /* bold */
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+
+  text-shadow:
+    0 0 10px rgba(160, 120, 255, 0.6),
+    0 0 20px rgba(80, 120, 255, 0.3);
+}
+
+.about-eyebrow-symbol {
+  font-size: 0.9rem;
+  color: rgba(160, 120, 255, 0.9);
+
+  text-shadow:
+    0 0 12px rgba(160, 120, 255, 0.8),
+    0 0 24px rgba(160, 120, 255, 0.4);
+}
+
+
+.about-eyebrow:hover .about-eyebrow-symbol {
+  animation: star-twinkle 1.8s ease-in-out infinite;
+}
+
+
+@keyframes star-twinkle {
+  0% {
+    opacity: 0.6;
+    transform: scale(0.95) rotate(0deg);
+    text-shadow:
+      0 0 8px rgba(160, 120, 255, 0.4),
+      0 0 16px rgba(160, 120, 255, 0.2);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(6deg);
+    text-shadow:
+      0 0 16px rgba(180, 140, 255, 0.9),
+      0 0 30px rgba(100, 140, 255, 0.6);
+  }
+  100% {
+    opacity: 0.7;
+    transform: scale(1) rotate(0deg);
+    text-shadow:
+      0 0 10px rgba(160, 120, 255, 0.5),
+      0 0 20px rgba(160, 120, 255, 0.3);
+  }
+}
+
+.tiktok-link {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.tiktok-link:hover {
+  text-decoration: underline;
+}
+
 
