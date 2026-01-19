@@ -6,7 +6,10 @@ const Header = () => {
     <header id="top" className="header">
       <div className="header-content">
         <h1 className="header-name">Hi, My name is Neilsen</h1>
-        <a href="#about" className="header-button">About Me</a>
+        <h2 className="header-title">I'm a full stack web developer</h2>
+        <a href="#about" className="header-button">About Me
+          <span className="header-button-arrow">↓</span>
+        </a>
       </div>
     </header>
   );

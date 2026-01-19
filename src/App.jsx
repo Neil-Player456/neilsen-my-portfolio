@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 import About from "./components/About";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 
 const App = () => {
@@ -48,6 +49,7 @@ const App = () => {
           <Contact />
         </section>
       </main>
+      <Footer id="footer" className="fade-section" />
     </>
   );
 };

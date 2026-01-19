@@ -4,7 +4,10 @@ import React from "react";
 const Projects = () => {
     return (
         <div className="project-section">
-            <h2>Projects</h2>
+            <span className="project-eyebrow">
+                <span className="project-eyebrow-symbol">✦</span>
+                Projects
+            </span>
         </div>
     );
 };
