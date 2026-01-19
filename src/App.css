@@ -371,7 +371,7 @@ section {
 
 .footer {
   position: relative;
-  background-color: transparent; /* fully see-through */
+  background-color: transparent; 
   color: #fff;
   text-align: center;
   padding: 2rem 1rem;
@@ -381,7 +381,7 @@ section {
 .footer-links {
   display: flex;
   justify-content: center;
-  gap: 1rem; /* keep your existing spacing */
+  gap: 1rem; 
   margin: 1rem 0;
 }
 
@@ -389,8 +389,8 @@ section {
   width: 40px;
   height: 40px;
   transition: transform 0.3s, filter 0.3s, opacity 0.5s;
-  animation: twinkle 2s infinite alternate; /* twinkle effect */
-  color: #fff; /* ensures SVGs are white */
+  animation: twinkle 2s infinite alternate; 
+  color: #fff; 
 }
 
 /* Glow on hover */

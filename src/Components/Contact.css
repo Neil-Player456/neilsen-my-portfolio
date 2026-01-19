@@ -9,7 +9,6 @@
   overflow: hidden;
 }
 
-
 .contact-eyebrow {
   display: flex;
   align-items: center;
@@ -17,15 +16,16 @@
   font-size: 0.9rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #f5f5f5; /
+  color: #f5f5f5;
   margin-bottom: 1rem;
 }
 
 .contact-eyebrow-symbol {
-  color: rgba(160, 120, 255, 0.9); 
+  color: rgba(160, 120, 255, 0.9);
   margin-right: 0.5rem;
   font-size: 1.1rem;
 }
+
 
 
 .contact-form {
@@ -33,7 +33,23 @@
   flex-direction: column;
   gap: 1rem;
   position: relative;
-  z-index: 2; 
+  z-index: 2;
+}
+
+
+.contact-form::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(
+    circle at top,
+    rgba(245, 215, 66, 0.12),
+    rgba(140, 120, 255, 0.08),
+    transparent 70%
+  );
+  filter: blur(30px);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .contact-form input,
@@ -41,10 +57,11 @@
   padding: 0.8rem 1rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.4); 
+  background: rgba(0, 0, 0, 0.45);
   color: white;
   font-size: 1rem;
   resize: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .contact-form input::placeholder,
@@ -53,22 +70,39 @@
 }
 
 
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: rgba(245, 215, 66, 0.9);
+  box-shadow:
+    0 0 0 1px rgba(245, 215, 66, 0.4),
+    0 0 12px rgba(245, 215, 66, 0.35),
+    0 0 24px rgba(140, 120, 255, 0.15);
+}
+
+
+
 .contact-form button {
   padding: 0.8rem 1.2rem;
-  background: #1f2937; 
-  color: #fff;       
+  background: #1f2937;
+  color: #fff;
   font-weight: bold;
-  border: 2px solid #fff; 
+  border: 2px solid #fff;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
+
 
 .contact-form button:hover {
   background: #fff;
   color: #1f2937;
   transform: scale(1.05);
+  box-shadow:
+    0 0 12px rgba(255, 255, 255, 0.6),
+    0 0 28px rgba(160, 120, 255, 0.35);
 }
+
 
 
 .stars {
