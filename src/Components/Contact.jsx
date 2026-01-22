@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 import "./Contact.css";
 
 const Contact = () => {
@@ -9,39 +10,15 @@ const Contact = () => {
   });
 
   const [stars, setStars] = useState([]);
-  const [recaptchaReady, setRecaptchaReady] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState(null);
 
-  // Load the reCAPTCHA script
-  useEffect(() => {
-    const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
-    if (!siteKey) {
-      console.error("VITE_RECAPTCHA_SITE_KEY is missing!");
-      return;
-    }
+  const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-    // Only load once
-    if (!document.getElementById("recaptcha-script")) {
-      const script = document.createElement("script");
-      script.src = `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
-      script.id = "recaptcha-script";
-      script.async = true;
-      document.body.appendChild(script);
-    }
-
-    // Poll until grecaptcha is ready
-    const checkGrecaptcha = setInterval(() => {
-      if (window.grecaptcha && window.grecaptcha.execute) {
-        window.grecaptcha.ready(() => {
-          setRecaptchaReady(true);
-        });
-        clearInterval(checkGrecaptcha);
-      }
-    }, 50);
-
-    return () => clearInterval(checkGrecaptcha);
-  }, []);
+  const recaptchaRef = useRef(null);
 
   useEffect(() => {
+    
     const newStars = Array.from({ length: 50 }).map(() => ({
       top: Math.random() * 100 + "%",
       left: Math.random() * 100 + "%",
@@ -58,22 +35,16 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!recaptchaReady) {
-      alert("reCAPTCHA is still loading. Please wait a moment.");
+    if (!captchaToken) {
+      alert("Please complete the reCAPTCHA before submitting.");
       return;
     }
 
     try {
-      // Safely execute reCAPTCHA
-      const token = await window.grecaptcha.execute(
-        import.meta.env.VITE_RECAPTCHA_SITE_KEY,
-        { action: "contact_form" }
-      );
-
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const response = await fetch(`${apiUrl}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, recaptchaToken: token }),
+        body: JSON.stringify({ ...formData, recaptchaToken: captchaToken }),
       });
 
       const data = await response.json();
@@ -81,14 +52,20 @@ const Contact = () => {
       if (response.ok && data.success) {
         alert(data.message || "Thanks! Your message has been sent.");
         setFormData({ name: "", email: "", message: "" });
+        recaptchaRef.current.reset(); // reset checkbox for next submit
+        setCaptchaToken(null);
       } else {
         alert(data.error || "Failed to send message. Please try again.");
+        recaptchaRef.current.reset();
+        setCaptchaToken(null);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
       alert(
-        "Failed to connect to server or reCAPTCHA not loaded. Please make sure the backend is running."
+        "Failed to connect to server. Please make sure the backend is running."
       );
+      recaptchaRef.current.reset();
+      setCaptchaToken(null);
     }
   };
 
@@ -138,6 +115,14 @@ const Contact = () => {
           onChange={handleChange}
           required
         />
+
+        
+        <ReCAPTCHA
+          sitekey={siteKey}
+          onChange={(token) => setCaptchaToken(token)}
+          ref={recaptchaRef}
+        />
+
         <button type="submit">Send</button>
       </form>
     </div>
