@@ -11,6 +11,7 @@ const Contact = () => {
 
   const [stars, setStars] = useState([]);
   const [captchaToken, setCaptchaToken] = useState(null);
+  const [showCaptcha, setShowCaptcha] = useState(false);
 
   const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
   const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
@@ -18,7 +19,6 @@ const Contact = () => {
   const recaptchaRef = useRef(null);
 
   useEffect(() => {
-    
     const newStars = Array.from({ length: 50 }).map(() => ({
       top: Math.random() * 100 + "%",
       left: Math.random() * 100 + "%",
@@ -30,6 +30,11 @@ const Contact = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSendClick = (e) => {
+    e.preventDefault();
+    setShowCaptcha(true); // trigger animation
   };
 
   const handleSubmit = async (e) => {
@@ -52,8 +57,9 @@ const Contact = () => {
       if (response.ok && data.success) {
         alert(data.message || "Thanks! Your message has been sent.");
         setFormData({ name: "", email: "", message: "" });
-        recaptchaRef.current.reset(); // reset checkbox for next submit
+        recaptchaRef.current.reset();
         setCaptchaToken(null);
+        setShowCaptcha(false);
       } else {
         alert(data.error || "Failed to send message. Please try again.");
         recaptchaRef.current.reset();
@@ -116,14 +122,36 @@ const Contact = () => {
           required
         />
 
-        
-        <ReCAPTCHA
-          sitekey={siteKey}
-          onChange={(token) => setCaptchaToken(token)}
-          ref={recaptchaRef}
-        />
+        <div className="button-captcha-wrapper">
+          <div
+            className={`send-button-wrapper ${
+              showCaptcha ? "fade-slide-out" : "fade-slide-in"
+            }`}
+          >
+            {!showCaptcha && (
+              <button type="button" onClick={handleSendClick}>
+                Send
+              </button>
+            )}
+          </div>
 
-        <button type="submit">Send</button>
+          <div
+            className={`captcha-submit-wrapper ${
+              showCaptcha ? "fade-slide-in" : "fade-slide-out"
+            }`}
+          >
+            {showCaptcha && (
+              <>
+                <ReCAPTCHA
+                  sitekey={siteKey}
+                  onChange={(token) => setCaptchaToken(token)}
+                  ref={recaptchaRef}
+                />
+                <button type="submit">Submit</button>
+              </>
+            )}
+          </div>
+        </div>
       </form>
     </div>
   );

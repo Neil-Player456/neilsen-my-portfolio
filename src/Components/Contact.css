@@ -141,3 +141,24 @@
     opacity: 0.8;
   }
 }
+
+.button-captcha-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+
+.fade-slide-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.5s ease;
+}
+
+.fade-slide-out {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.5s ease;
+}
