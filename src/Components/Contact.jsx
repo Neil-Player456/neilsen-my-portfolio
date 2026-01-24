@@ -34,7 +34,7 @@ const Contact = () => {
 
   const handleSendClick = (e) => {
     e.preventDefault();
-    setShowCaptcha(true); // trigger animation
+    setShowCaptcha(true); 
   };
 
   const handleSubmit = async (e) => {

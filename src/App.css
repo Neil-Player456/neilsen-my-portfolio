@@ -414,6 +414,74 @@ section {
     filter: drop-shadow(0 0 3px #fff);
   }
 }
+.projects-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  margin-top: 2rem;
+  justify-content: center; /* keeps current layout intact */
+}
+
+.project-card {
+  position: relative;
+  width: 100%;
+  max-width: 300px; /* keeps cards uniform */
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(160, 120, 255, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 35px rgba(160, 120, 255, 0.35);
+}
+
+.project-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.08);
+}
+
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 15, 26, 0.75);
+  color: #fff;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.project-desc {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-top: 0.3rem;
+}
+
+.project-section {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
 
 
 
