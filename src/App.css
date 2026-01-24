@@ -483,6 +483,26 @@ section {
   transform: translateY(0) !important;
 }
 
+.github-link {
+  align-self: flex-end;
+  margin-bottom: auto;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.25s ease;
+}
+
+.github-link:hover {
+  background: #fff;
+  color: #000;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
 
 
 
