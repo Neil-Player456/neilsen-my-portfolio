@@ -393,7 +393,7 @@ section {
   color: #fff; 
 }
 
-/* Glow on hover */
+
 .footer-links a:hover svg {
   transform: scale(1.2);
   filter: drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #fff);
@@ -419,13 +419,13 @@ section {
   flex-wrap: wrap;
   gap: 1.8rem;
   margin-top: 2rem;
-  justify-content: center; /* keeps current layout intact */
+  justify-content: center; 
 }
 
 .project-card {
   position: relative;
   width: 100%;
-  max-width: 300px; /* keeps cards uniform */
+  max-width: 300px; 
   overflow: hidden;
   border-radius: 12px;
   cursor: pointer;
