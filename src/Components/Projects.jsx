@@ -5,7 +5,7 @@ const projectList = [
       title: "Omniscient - All About Games",
       description: "Complete fullstack app built with React, Flask, & JWT.",
       image: "/images/featured1.png",
-      live: "https://omniscient-seven.vercel.app/",
+      live: "https://omniscient-beta.vercel.app/",
       github: "https://github.com/Neil-Player456/Neil--Omniscient.git",
     },
     {
